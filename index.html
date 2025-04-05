@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datasheet Opener</title>
+</head>
+<body>
+    <h1>Opening Datasheets...</h1>
+    <p>If your datasheets don't open automatically, click the links below:</p>
+    <div id="links-container"></div>
+    
+    <script>
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const url1 = urlParams.get('url1');
+        const url2 = urlParams.get('url2');
+        
+        // Create links container
+        const container = document.getElementById('links-container');
+        
+        // Function to handle URL display and opening
+        function processUrl(url, index) {
+            if (url) {
+                // Decode the URL in case it was encoded
+                const decodedUrl = decodeURIComponent(url);
+                
+                // Create a link element
+                const link = document.createElement('a');
+                link.href = decodedUrl;
+                link.textContent = `Datasheet ${index}`;
+                link.target = '_blank';
+                container.appendChild(link);
+                container.appendChild(document.createElement('br'));
+                
+                // Open the URL automatically
+                window.open(decodedUrl, '_blank');
+            }
+        }
+        
+        // Process both URLs
+        processUrl(url1, 1);
+        processUrl(url2, 2);
+    </script>
+</body>
+</html>
